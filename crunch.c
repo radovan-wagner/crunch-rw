@@ -255,6 +255,7 @@
 #include <limits.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include ¨crunch.h¨
 
 /* largest output string */
 #define MAXSTRING 128
