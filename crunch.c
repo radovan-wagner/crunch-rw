@@ -239,22 +239,7 @@
  *     don't have access to any of the those systems.  Please let me know.
  */
 
-#include <assert.h>
-#include <locale.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <wchar.h>
-#include <ctype.h>
-#include <errno.h>
-#include <signal.h>
-#include <math.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <limits.h>
-#include <sys/wait.h>
-#include <sys/types.h>
+
 #include ¨crunch.h¨
 
 /* largest output string */
@@ -298,49 +283,6 @@ Size is MAXSTRING*MB_CUR_MAX+1
 */
 static char* gconvbuffer = NULL;
 static size_t gconvlen = 0;
-
-struct thread_data{
-unsigned long long finalfilesize; /* total size of output */
-unsigned long long bytetotal;  /* total number of bytes so far */
-unsigned long long bytecounter; /* count number of bytes in output resets to 0 */
-unsigned long long finallinecount; /* total size of output */
-unsigned long long linetotal; /* total number of lines so far */
-unsigned long long linecounter; /* counts number of lines in output resets to 0 */
-};
-
-/* pattern info */
-struct pinfo {
-  wchar_t *cset; /* character set pattern[i] is member of */
-  size_t clen;
-  int is_fixed; /* whether pattern[i] is a fixed value */
-  size_t start_index, end_index; /* index into cset for the start and end strings */
-  size_t duplicates;
-};
-
-/* program options */
-struct opts_struct {
-  wchar_t *low_charset;
-  wchar_t *upp_charset;
-  wchar_t *num_charset;
-  wchar_t *sym_charset;
-  size_t clen, ulen, nlen, slen;
-  wchar_t *pattern;
-  size_t plen;
-  wchar_t *literalstring;
-  wchar_t *startstring;
-  wchar_t *endstring;
-  size_t duplicates[4]; /* allowed number of duplicates for each charset */
-
-  size_t min, max;
-
-  wchar_t *last_min;  /* last string of length min */
-  wchar_t *first_max; /* first string of length max */
-  wchar_t *min_string;
-  wchar_t *max_string; /* either startstring/endstring or calculated using the pattern */
-
-  struct pinfo *pattern_info; /* information generated from pattern */
-};
-typedef struct opts_struct options_type;
 
 static struct thread_data my_thread;
 
