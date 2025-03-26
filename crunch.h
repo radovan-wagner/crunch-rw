@@ -1,5 +1,5 @@
-#ifndef __CRUNCH-RW__
-#define __CRUNCH-RW__
+#ifndef __CRUNCH_RW__
+#define __CRUNCH_RW__
 
 #include <assert.h>
 #include <locale.h>

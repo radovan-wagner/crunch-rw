@@ -240,7 +240,7 @@
  */
 
 
-#include ¨crunch.h¨
+#include "crunch.h"
 
 /* largest output string */
 #define MAXSTRING 128
